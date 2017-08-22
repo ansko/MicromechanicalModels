@@ -17,7 +17,7 @@ E_f = 232
 E_m = 2
 E_i = 3
 
-def Model(t, tau, V_d, E_f, E_m, E_i):
+def model(t, tau, V_d, E_f, E_m, E_i):
     alpha = math.sqrt((2 * tau / t + 1) * V_d)
     fi = math.sqrt(V_d)
     ratio_reversal = 0
@@ -26,8 +26,13 @@ def Model(t, tau, V_d, E_f, E_m, E_i):
     ratio_reversal += fi / (1 - alpha + (alpha - fi) * E_i / E_m + fi * E_f / E_m)
     return 1 / ratio_reversal
 
-def plot_tau():
-    for tau in range(0, 15000):
-        print(tau / 1000, Model(t, tau / 1000, V_d, E_f, E_m, E_i) * E_m)
+def plotTau():
+    for i in range(1, 101):
+        print(i, model(t, t * i, V_d, E_f, E_m, E_i) * E_m)
 
-plot_tau()
+def plotVolumeFraction():
+    for i in range(0, 101):
+        print(i / 1000, model(t, tau, i / 1000, E_f, E_m, E_i) * E_m)
+
+#plotTau()
+plotVolumeFraction()

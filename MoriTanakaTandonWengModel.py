@@ -8,12 +8,14 @@ import math
 # E_f = 232 # Young's modulus of the filler (in GPa)
 # E_m = 2 # Young's modulus of the matrix (in GPa) to be consistent with FEM
 
+fi = 0.02
 L = 78
 t = 11
 E_f = 232
 nu_f = 0.3
 E_m = 2
 nu_m = 0.3
+
 
 def model(fi, L, t, E_f, nu_f, E_m, nu_m):
     alpha = t / L
@@ -53,15 +55,6 @@ def model(fi, L, t, E_f, nu_f, E_m, nu_m):
     
     E11_ratio = 1 / (1 + fi * (A1 + 2 * nu_m * A2) / A)
     E22_ratio = 1 / (1 + fi * (-2 * nu_m * A3 + (1 - nu_m) * A4 + (1 + nu_m) * A5 * A) / 2 / A)
-    #print('S1111 = ', S1111)
-    #print('S2222 = ', S2222)
-    #print('S2233 = ', S2233)
-    #print('S2211 = ', S2211)
-    #print('S1122 = ', S1122)
-    #print('S2323 = ', S2323)
-    #print('S1212 = ', S1212)
-    #print('E11 = ', E11_ratio * E_m)
-    #print('E22 = ', E22_ratio * E_m)
     
     return [E11_ratio, E22_ratio]
 
@@ -70,6 +63,11 @@ def getDependenceFi():
     for fi in range(301):
         [E11_ratio, E22_ratio] = model(fi / 10000, L, t, E_f, nu_f, E_m, nu_m)
         print(fi / 10000, E11_ratio * E_m, E22_ratio * E_m)
+        
+def getDependenceAspectRario():
+    for i in range(2, 101):
+        [E11_ratio, E22_ratio] = model(fi, t * i, t, E_f, nu_f, E_m, nu_m)
+        print(i, E11_ratio * E_m, E22_ratio * E_m)
 
-
-getDependenceFi()
+#getDependenceFi()
+getDependenceAspectRario()
