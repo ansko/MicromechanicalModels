@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Default values for exfoliated:
+# Default values for intercalated:
 # L = 78 # length of the particle (in nm)
 # t = 11 # thickness of the particle (in nm)
 # E_f = 232 # Young's modulus of the filler (in GPa)

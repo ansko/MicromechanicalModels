@@ -24,7 +24,6 @@ def Model(t, tau, V_d, E_f, E_m, E_i):
     ratio_reversal += (1 - alpha)
     ratio_reversal += (alpha - fi) / (1 - alpha + alpha * E_i / E_m)
     ratio_reversal += fi / (1 - alpha + (alpha - fi) * E_i / E_m + fi * E_f / E_m)
-
     return 1 / ratio_reversal
 
 def plot_tau():
